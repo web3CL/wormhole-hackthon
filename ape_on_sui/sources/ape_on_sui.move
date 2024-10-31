@@ -74,10 +74,10 @@ module ape_on_sui::ape_on_sui {
     /// Claim tokens if whitelisted
     public entry fun claim(
         treasury_cap: &mut TreasuryCap<APE_ON_SUI>,
+        sender: address,
         storage: &mut WhitelistStorage,
         ctx: &mut TxContext
     ) {
-        let sender = tx_context::sender(ctx);
         
         // Check if whitelisted
         assert!(vec_set::contains(&storage.whitelist, &sender), ENotWhitelisted);
